@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page d'Énigmes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+      }
+      .enigme {
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 1px solid #ddd;
+      }
+      .titre {
+        font-size: 24px;
+        color: #333;
+      }
+      .description {
+        font-size: 18px;
+        color: #666;
+      }
+      #nextPage {
+        display: none; /* Initialement caché */
+        margin-top: 20px;
+      }
+      #message {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message" style="display: none">
+        3 times up
+      </div>
+    <div class="enigme">
+      <div class="titre">Enigme 1:</div>
+      <div class="description">
+        
+          .-. . --. .- .-. -.. . / .-.. . / .-.. .. . -.
+ <br />
+ n * Reponse: <input type="text" id="reponse1" />
+        <button onclick="verifierReponse1()">Valider</button>
+        <span id="resultat1"></span>
+      </div>
+    </div>
+
+    <div class="enigme">
+      <div class="titre">Enigme 2:</div>
+      <div class="description">
+
+        UJKU KU C RTQXKFG  <br />
+        (+ 1)
+        Reponse: <input type="text" id="reponse2" />
+        <button onclick="verifierReponse2()">Valider</button>
+        <span id="resultat2"></span>
+      </div>
+    </div>
+
+    <div class="enigme">
+      <div class="titre">Enigme 3:</div>
+      <div class="description">
+        Quel est le prochain nombre dans cette suite : 3, 7, 13, 21, 31, ...?<br />
+        Reponse: <input type="text" id="reponse3" />
+        <button onclick="verifierReponse3()">Valider</button>
+        <span id="resultat3"></span>
+      </div>
+    </div>
+
+    <a
+      href="javascript:void(0)"
+      id="nextPage"
+      onclick="afficherMessageEtRediriger()"
+      >Aller à la nouvelle page</a
+    >
+    
+
+    <script>
+      function verifierReponse1() {
+        var reponse1 = document.getElementById("reponse1").value;
+        if (reponse1.toLowerCase() === "regarde le lien") {
+          document.getElementById("resultat1").innerText = "1 (n)";
+        } else {
+          document.getElementById("resultat1").innerText = "Incorrect";
+        }
+        verifierToutesLesReponses();
+      }
+
+      function verifierReponse2() {
+        var reponse2 = document.getElementById("reponse2").value;
+        if (reponse2.toLowerCase() === "this is a secret") {
+          document.getElementById("resultat2").innerText = "jection + 1";
+        } else {
+          document.getElementById("resultat2").innerText = "Incorrect";
+        }
+        verifierToutesLesReponses();
+      }
+
+      function verifierReponse3() {
+        var reponse3 = document.getElementById("reponse3").value;
+        if (reponse3 === "43") {
+          document.getElementById("resultat3").innerText = "sql";
+        } else {
+          document.getElementById("resultat3").innerText = "Incorrect";
+        }
+        verifierToutesLesReponses();
+      }
+
+      function verifierToutesLesReponses() {
+        var resultat1 = document.getElementById("resultat1").innerText;
+        var resultat2 = document.getElementById("resultat2").innerText;
+        var resultat3 = document.getElementById("resultat3").innerText;
+
+        if (
+          resultat1 === "1 (n)" &&
+          resultat2 === "jection + 1" &&
+          resultat3 === "sql"
+        ) {
+          document.getElementById("nextPage").style.display = "block";
+        }
+      }
+      function afficherMessageEtRediriger() {
+    // Afficher le message
+    var messageDiv = document.getElementById("message");
+    messageDiv.style.display = "block";
+
+    // Utiliser setTimeout pour cacher le message et rediriger après 0.5 seconde
+    setTimeout(function() {
+        messageDiv.style.display = "none";
+        window.location.href = "second.html";
+    }, 100); 
+}
+
+    </script>
+  </body>
+</html>

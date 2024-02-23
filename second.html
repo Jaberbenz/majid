@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page de Test SQL Injection</title>
+    <style>
+      .flex {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centrer horizontalement */
+        flex-wrap: wrap; /* Permettre le retour à la ligne si nécessaire */
+        gap: 10px; /* Espacement entre les éléments */
+      }
+      .input-red {
+        background-color: red;
+      }
+      .input-blue {
+        background-color: blue;
+        color: white;
+      }
+      .input-green {
+        background-color: green;
+        color: white;
+      }
+      .input-yellow {
+        background-color: yellow;
+      }
+      input,
+      button {
+        width: 20rem;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="get_data.php" method="post">
+      <div class="flex">
+        <input type="text" name="data1" class="input-red" id="inputData1"/>
+        <input type="text" name="data2" class="input-blue" id="inputData2"/>
+        <input type="text" name="data3" class="input-green" id="inputData3"/>
+        <input type="text" name="data4" class="input-yellow" id="inputData4" />
+        <input type="text" name="data1" class="input-red" id="inputData1"/>
+        <input type="text" name="data2" class="input-blue" id="inputData2"/>
+        <input type="text" name="data3" class="input-green" id="inputData3"/>
+        <input type="text" name="data3" class="input-yellow" id="inputData3"/>
+        <input type="text" name="data1" class="input-red" id="inputData1"/>
+        <input type="text" name="data2" class="input-blue" id="inputData2"/>
+        <input type="text" name="data3" class="input-green" id="inputData3"/>
+        <input type="text" name="data3" class="input-yellow" id="inputData3"/>
+        <input type="text" name="data1" class="input-red" id="inputData1"/>
+        <input type="text" name="data2" class="input-blue" id="inputData2"/>
+        <input type="text" name="data3" class="input-green" id="inputData3"/>
+        <input type="text" name="data3" class="input-yellow" id="inputData3"/>
+        <button type="button" id="boutonVerif">Vérifier le champ</button>
+        <button type="submit" id="boutonSpecial" style="display: none">
+          Envoyer Spécial
+        </button>
+      </div>
+    </form>
+    <script>
+         document.getElementById('boutonVerif').addEventListener('click', function() {
+        var inputData4 = document.getElementById('inputData4').value;
+        var inputData1 = document.querySelector('input[name="data1"]').value;
+        var inputData2 = document.querySelector('input[name="data2"]').value;
+        var inputData3 = document.querySelector('input[name="data3"]').value;
+        var boutonVerif = document.getElementById('boutonVerif');
+        var boutonSpecial = document.getElementById('boutonSpecial');
+
+        // Vérifiez si data4 est rempli et tous les autres sont vides
+        if (inputData4 !== "" && inputData1 === "" && inputData2 === "" && inputData3 === "") {
+            boutonSpecial.style.display = "block";
+        } else {
+            boutonVerif.disabled = true;
+            alert("Conditions non remplies. Vous devez attendre une minute avant de réessayer.");
+
+            setTimeout(function() {
+                boutonVerif.disabled = false;
+            }, 6000); // 60000 millisecondes = 1 minute
+        }
+    });
+
+    </script>
+  </body>
+</html>
